@@ -39,4 +39,27 @@ public class MobileService {
     public List<Mobile> searchMobilesByPrice(Double minPrice, Double maxPrice) {
         return mobileRepository.searchMobilePrice(minPrice, maxPrice);
     }
+
+    public Mobile updateMobile(Long mobileId, Mobile mobile) {
+        Mobile mobile1 = mobileRepository.findById(mobileId).orElseThrow(() -> new RuntimeException("Mobile is not found"));
+
+        Optional<Mobile> existingMobile = mobileRepository.findByModel(mobile.getModel());
+        if (existingMobile.isPresent() && !existingMobile.get().getMobileId().equals(mobileId)) {
+            throw new DuplicateModelException("A mobile with this model already exists");
+        }
+        else {
+            mobile1.setName(mobile.getName());
+            mobile1.setBrand(mobile.getBrand());
+            mobile1.setModel(mobile.getModel());
+            mobile1.setReleaseDate(mobile.getReleaseDate());
+            mobile1.setPrice(mobile.getPrice());
+
+            return mobileRepository.save(mobile1);
+        }
+    }
+
+
+    public void deleteMobile(Long mobileId) {
+        mobileRepository.deleteById(mobileId);
+    }
 }
