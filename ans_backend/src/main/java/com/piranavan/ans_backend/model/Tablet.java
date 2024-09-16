@@ -27,4 +27,5 @@ public class Tablet {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate releaseDate;
     private Double price;
+    private String warrantyDetails;
 }

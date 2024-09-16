@@ -53,6 +53,7 @@ public class MobileService {
             mobile1.setModel(mobile.getModel());
             mobile1.setReleaseDate(mobile.getReleaseDate());
             mobile1.setPrice(mobile.getPrice());
+            mobile1.setWarrantyDetails(mobile.getWarrantyDetails());
 
             return mobileRepository.save(mobile1);
         }

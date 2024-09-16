@@ -51,6 +51,7 @@ public class TabletService {
             tablet1.setModel(tablet.getModel());
             tablet1.setReleaseDate(tablet.getReleaseDate());
             tablet1.setPrice(tablet.getPrice());
+            tablet1.setWarrantyDetails(tablet1.getWarrantyDetails());
 
             return tabletRepository.save(tablet1);
         }
